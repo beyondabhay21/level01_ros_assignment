@@ -1,0 +1,5 @@
+Bug 1
+File: testbed_description/CMakeLists.txt (last line)
+Symptom: colcon build failed: "Parse error. Expected '(', got newline"
+Cause: ament_package was called without parentheses
+Fix: changed to ament_package()

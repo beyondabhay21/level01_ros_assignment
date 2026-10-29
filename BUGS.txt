@@ -13,3 +13,8 @@ Bug 3 (suspected)
 File: testbed_description/urdf/testbed.gazebo, line 65
 Symptom: lidar range_max was 1.5 m, too short for localization on a ~20 m map
 Fix: increased range_max to 12.0 m
+
+Bug 4
+File: testbed_bringup/CMakeLists.txt
+Symptom: map_server failed with "bad file"; maps/ directory was never installed to share/testbed_bringup
+Fix: added maps to the install(DIRECTORY ...) rule

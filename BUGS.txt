@@ -3,3 +3,13 @@ File: testbed_description/CMakeLists.txt (last line)
 Symptom: colcon build failed: "Parse error. Expected '(', got newline"
 Cause: ament_package was called without parentheses
 Fix: changed to ament_package()
+
+Bug 2
+File: testbed_bringup/maps/testbed_world.yaml
+Symptom: map_server cannot load the map (image "wrong_path_testbed_world.pgm" does not exist)
+Fix: changed image to testbed_world.pgm
+
+Bug 3 (suspected)
+File: testbed_description/urdf/testbed.gazebo, line 65
+Symptom: lidar range_max was 1.5 m, too short for localization on a ~20 m map
+Fix: increased range_max to 12.0 m

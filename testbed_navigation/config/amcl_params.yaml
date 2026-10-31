@@ -33,4 +33,3 @@ amcl:
     save_pose_rate: 0.5
     tf_broadcast: true
     transform_tolerance: 0.5
-    set_initial_pose: false

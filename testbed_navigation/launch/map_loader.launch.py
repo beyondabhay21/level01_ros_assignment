@@ -4,6 +4,7 @@ from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument
 from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
+from launch_ros.parameter_descriptions import ParameterValue
 
 
 def generate_launch_description():
@@ -13,6 +14,8 @@ def generate_launch_description():
     map_arg = DeclareLaunchArgument('map', default_value=default_map)
     sim_time_arg = DeclareLaunchArgument('use_sim_time', default_value='true')
 
+    use_sim_time = ParameterValue(LaunchConfiguration('use_sim_time'), value_type=bool)
+
     map_server = Node(
         package='nav2_map_server',
         executable='map_server',
@@ -20,7 +23,7 @@ def generate_launch_description():
         output='screen',
         parameters=[{
             'yaml_filename': LaunchConfiguration('map'),
-            'use_sim_time': LaunchConfiguration('use_sim_time'),
+            'use_sim_time': use_sim_time,
         }],
     )
 
@@ -30,7 +33,7 @@ def generate_launch_description():
         name='lifecycle_manager_map',
         output='screen',
         parameters=[{
-            'use_sim_time': LaunchConfiguration('use_sim_time'),
+            'use_sim_time': use_sim_time,
             'autostart': True,
             'node_names': ['map_server'],
         }],

@@ -34,4 +34,13 @@ def generate_launch_description():
         }],
     )
 
-    return LaunchDescription([params_arg, sim_time_arg, amcl, lifecycle_manager])
+    initial_pose = Node(
+        package='testbed_navigation',
+        executable='initial_pose_from_odom.py',
+        name='initial_pose_from_odom',
+        output='screen',
+        parameters=[{'use_sim_time': LaunchConfiguration('use_sim_time')}],
+    )
+
+    return LaunchDescription(
+        [params_arg, sim_time_arg, amcl, lifecycle_manager, initial_pose])
